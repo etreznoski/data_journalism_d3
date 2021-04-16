@@ -1,11 +1,11 @@
-const svgWidth = 1000;
+const svgWidth = 900;
 const svgHeight = 700;
 
 const margin = {
   top: 20,
   right: 40,
   bottom: 80,
-  left: 100
+  left: 40
 };
 
 const width = svgWidth - margin.left - margin.right;
@@ -64,11 +64,23 @@ d3.csv("assets/data/data.csv").then(healthData => {
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", 10)
+    .attr("r", 15)
     .attr("fill", "blue")
     .attr("opacity", 0.5)
     .attr("stroke", "black")
     .text(d => d.abbr);
+
+  const textGroup = chartGroup.append("g")
+  const stateLabel = textGroup.selectAll("text")
+    .data(healthData)
+    .join("text")
+    .attr("x", d => (xLinearScale(d.poverty)) - 6)
+    .attr("y", d => (yLinearScale(d.healthcare)) + 5)
+    .text(d => d.abbr)
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr("font-weight", "700")
+    .attr("fill", "black");
 
   // Create group for two x-axis labels
   const labelsGroup = chartGroup.append("g")
