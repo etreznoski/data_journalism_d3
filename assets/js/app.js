@@ -82,7 +82,7 @@ d3.csv("assets/data/data.csv").then(healthData => {
     .attr("font-weight", "700")
     .attr("fill", "black");
 
-  // Create group for two x-axis labels
+  // Create group for x-axis labels
   const labelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
@@ -99,54 +99,7 @@ d3.csv("assets/data/data.csv").then(healthData => {
     .attr("y", 0 - margin.left)
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
-    .classed("axis-text", true)
+    .classed("axis-text active", true)
     .text("Lacks Healthcare %");
 
-  // // updateToolTip function above csv import
-  // circlesGroup = updateToolTip(chosenYAxis, circlesGroup);
-
-  // // x axis labels event listener
-  // labelsGroup.selectAll("text")
-  //   .on("click", function() {
-  //     // get value of selection
-  //     const value = d3.select(this).attr("value");
-  //     if (value !== chosenXAxis) {
-  //
-  //       // replaces chosenXAxis with value
-  //       chosenXAxis = value;
-  //
-  //       // console.log(chosenXAxis)
-  //
-  //       // functions here found above csv import
-  //       // updates x scale for new data
-  //       xLinearScale = xScale(healthData, chosenXAxis);
-  //
-  //       // updates x axis with transition
-  //       xAxis = renderAxes(xLinearScale, xAxis);
-  //
-  //       // updates circles with new x values
-  //       circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
-  //
-  //       // updates tooltips with new info
-  //       circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
-  //
-  //       // changes classes to change bold text
-  //       if (chosenXAxis === "poverty") {
-  //         povertyLabel
-  //           .classed("active", true)
-  //           .classed("inactive", false);
-  //         ageLabel
-  //           .classed("active", false)
-  //           .classed("inactive", true);
-  //       }
-  //       else {
-  //         povertyLabel
-  //           .classed("active", false)
-  //           .classed("inactive", true);
-  //         ageLabel
-  //           .classed("active", true)
-  //           .classed("inactive", false);
-  //       }
-  //     }
-  //   });
 }).catch(error => console.log(error));
